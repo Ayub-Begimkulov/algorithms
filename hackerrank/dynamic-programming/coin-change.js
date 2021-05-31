@@ -20,5 +20,3 @@ function getWays(amount, coins, index = 0, cache = new Map()) {
   cache.set(cacheIdx, result);
   return result;
 }
-
-console.log(getWays(3, [2, 1, 3]));
