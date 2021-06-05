@@ -3,15 +3,16 @@
 function componentsInGraph(gb) {
   const graph = new Map();
   gb.forEach(([start, end]) => {
-    const ways = graph.get(start) || [];
-    ways.push(end);
-    graph.set(start, ways);
-
-    const ways2 = graph.get(end) || [];
-    ways2.push(start);
-    graph.set(end, ways2);
+    addPath(graph, start, end);
+    addPath(graph, end, start);
   });
   return getMinMax(graph);
+}
+
+function addPath(graph, key, value) {
+  const paths = graph.get(key) || [];
+  paths.push(value);
+  graph.set(key, paths);
 }
 
 function getMinMax(graph) {
